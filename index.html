@@ -13,50 +13,70 @@
             <span class="sound">plouf</span>
         </div>
         <div data-key="83" class="key">
-            <kdb>B</kdb>
+            <kdb>S</S></kdb>
             <span class="sound">prout</span>
         </div>
         <div data-key="68" class="key">
-            <kdb>C</kdb>
+            <kdb>D</kdb>
             <span class="sound">ticket</span>
         </div>
         <div data-key="70" class="key">
-            <kdb>D</kdb>
-            <span class="sound">rot</span>
+            <kdb>F</kdb>
+            <span class="sound">roter</span>
         </div>
         <div data-key="71" class="key">
-            <kdb>E</kdb>
+            <kdb>G</kdb>
             <span class="sound">boing</span>
         </div>
         <div data-key="72" class="key">
-            <kdb>F</kdb>
-            <span class="sound">crissement</span>
+            <kdb>H</kdb>
+            <span class="sound">crisse</span>
         </div>
         <div data-key="74" class="key">
-            <kdb>G</kdb>
+            <kdb>J</kdb>
             <span class="sound">blaster</span>
         </div>
         <div data-key="75" class="key">
-            <kdb>H</kdb>
-            <span class="sound">mouton</span>
+            <kdb>K</kdb>
+            <span class="sound">béééé</span>
         </div>
         <div data-key="76" class="key">
-            <kdb>I</kdb>
-            <span class="sound">biere</span>
+            <kdb>L</kdb>
+            <span class="sound">bières</span>
         </div>
     </div>
-    <audio data-key="65" src="sounds/biere.wav"></audio>
-    <audio data-key="83" src="sounds/blaster.wav"></audio>
-    <audio data-key="68" src="sounds/boing.wav"></audio>
-    <audio data-key="70" src="sounds/crissement.wav"></audio>
-    <audio data-key="71" src="sounds/mouton.wav"></audio>
-    <audio data-key="72" src="sounds/plouf.wav"></audio>
-    <audio data-key="74" src="sounds/prout.wav"></audio>
-    <audio data-key="75" src="sounds/rot.wav"></audio>
-    <audio data-key="76" src="sounds/ticket.wav"></audio>
+    <audio data-key="65" src="sounds/plouf.wav"></audio>
+    <audio data-key="83" src="sounds/prout.wav"></audio>
+    <audio data-key="68" src="sounds/ticket.wav"></audio>
+    <audio data-key="70" src="sounds/rot.wav"></audio>
+    <audio data-key="71" src="sounds/boing.wav"></audio>
+    <audio data-key="72" src="sounds/crissement.wav"></audio>
+    <audio data-key="74" src="sounds/blaster.wav"></audio>
+    <audio data-key="75" src="sounds/mouton.wav"></audio>
+    <audio data-key="76" src="sounds/biere.wav"></audio>
 
     <script>
-
+        function removeTransition(e) {
+            if (e.propertyName !== 'transform') {
+                return;
+            }
+            e.target.classList.remove('playing');
+        }
+        
+        function playSound(e) {
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+            if (!audio) {
+                return;
+            }
+            key.classList.add('playing');
+            audio.currentTime = 0;
+            audio.play();
+        }
+        
+        const keys = Array.from(document.querySelectorAll('.key'));
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+        window.addEventListener('keydown', playSound);
     </script>
 </body>
 </html>
