@@ -33,4 +33,4 @@ localhost
 Puis cliquez sur le dossier contenant ```sounds-maker``` puis selectionnez ```index.html```.
 La page s'affiche vous n'avez plus qu'à taper sur la touche correpondant à un son et le son retenti :-)
 ![soundmaker](https://user-images.githubusercontent.com/71837699/119236036-868d4c80-bb35-11eb-81ff-3ba16095a941.png)
-# sounds-maker
+
